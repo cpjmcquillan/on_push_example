@@ -1,15 +1,12 @@
 class ReceiptCalculator
-  attr_reader :items
+  attr_reader :total
 
   def initialize
-    @items = []
+    @total = 0
   end
 
   def add_item(name:, quantity:, price:)
-    items.push({name: name, quantity: quantity, price: price})
-  end
-
-  def total
-    items.inject(0) { |sum, item| sum + item[:quantity] * item[:price] }
+    cost = quantity * price
+    @total = total + cost
   end
 end

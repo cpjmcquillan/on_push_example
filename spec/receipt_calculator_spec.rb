@@ -2,18 +2,18 @@ require "spec_helper"
 
 RSpec.describe ReceiptCalculator do
   describe "#add_item" do
-    it "adds an item to the receipt" do
+    it "adds the cost to the total" do
       calculator = ReceiptCalculator.new
 
-      calculator.add_item(name: "Pizza", quantity: 1, price: 1000)
-      items = calculator.items
+      calculator.add_item(name: "Pizza", quantity: 2, price: 1000)
+      total = calculator.total
 
-      expect(items).to contain_exactly({name: "Pizza", quantity: 1, price: 1000})
+      expect(total).to eq(2000)
     end
   end
 
   describe "#total" do
-    it "calculates the total of the receipt" do
+    it "returns the total of the receipt" do
       calculator = ReceiptCalculator.new
 
       calculator.add_item(name: "Pizza", quantity: 2, price: 1000)
