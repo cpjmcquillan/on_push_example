@@ -1,4 +1,6 @@
 class ReceiptCalculator
+  TAX_RATE = 0.08
+
   attr_reader :items
 
   def initialize
@@ -10,6 +12,7 @@ class ReceiptCalculator
   end
 
   def total
-    items.inject(0) { |sum, item| sum + item[:quantity] * item[:price] }
+    sub_total = items.inject(0) { |sum, item| sum + item[:quantity] * item[:price] }
+    sub_total * (1 + TAX_RATE)
   end
 end

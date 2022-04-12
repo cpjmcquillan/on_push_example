@@ -13,14 +13,15 @@ RSpec.describe ReceiptCalculator do
   end
 
   describe "#total" do
-    it "calculates the total of the receipt" do
+    it "calculates the total of the receipt including tax" do
+      stub_const("ReceiptCalculator::TAX_RATE", 0.1)
       calculator = ReceiptCalculator.new
 
       calculator.add_item(name: "Pizza", quantity: 2, price: 1000)
       calculator.add_item(name: "Coke", quantity: 1, price: 500)
       total = calculator.total
 
-      expect(total).to eq(2500)
+      expect(total).to eq(2750)
     end
   end
 end
